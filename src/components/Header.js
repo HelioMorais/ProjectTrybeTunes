@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { getUser } from '../services/userAPI';
 import Loading from '../pages/Loading';
 
@@ -22,23 +23,67 @@ class Header extends Component {
     } = this.state;
     if (name) {
       return (
-        <header data-testid="header-component">
-          <h1>TrybeTunes</h1>
-          <span data-testid="header-user-name">
-            Usuário:
-            {' '}
-            {userInfo.name}
-          </span>
-        </header>
+        <div>
+          <header data-testid="header-component">
+            <h1>TrybeTunes</h1>
+            <nav>
+              <Link
+                to="/search"
+                data-testid="link-to-search"
+              >
+                Pequisa
+              </Link>
+              <Link
+                to="/favorites"
+                data-testid="link-to-favorites"
+              >
+                Músicas Favoritas
+              </Link>
+              <Link
+                to="/profile"
+                data-testid="link-to-profile"
+              >
+                Perfil
+              </Link>
+            </nav>
+            <span>
+              Usuário:
+              {' '}
+              {userInfo.name}
+            </span>
+          </header>
+        </div>
       );
     }
 
     if (name === false) {
       return (
-        <header data-testid="header-component">
-          <h1>TrybeTunes</h1>
-          <Loading />
-        </header>
+        <div>
+          <header>
+            <h1>TrybeTunes</h1>
+            <nav>
+              <Link
+                to="/search"
+                data-testid="link-to-search"
+              >
+                Pequisa
+              </Link>
+              <Link
+                to="/favorites"
+                data-testid="link-to-favorites"
+              >
+                Músicas Favoritas
+              </Link>
+              <Link
+                to="/profile"
+                data-testid="link-to-profile"
+              >
+                Perfil
+              </Link>
+            </nav>
+            <Loading />
+          </header>
+        </div>
       );
     }
   }
