@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from './Loading';
-import Music from '../components/Music';
+import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 
 class Album extends Component {
@@ -39,12 +39,21 @@ class Album extends Component {
 
   render() {
     const { album } = this.state;
+    const authenticateAlbum = album.filter((element) => element.trackName !== undefined);
     return (
       <div>
         <Header />
         {(album.length === 0)
           ? <Loading /> : this.renderAlbumPage()}
-        <Music album={ album } />
+        {authenticateAlbum.map(({ trackName, trackId, previewUrl }) => (
+          <div key={ trackName }>
+            <p>{ trackName }</p>
+            <MusicCard
+              trackId={ trackId }
+              previewUrl={ previewUrl }
+              album={ album }
+            />
+          </div>))}
       </div>
     );
   }
