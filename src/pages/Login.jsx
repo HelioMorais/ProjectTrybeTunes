@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
+import './Login.css';
 
 class Login extends Component {
   state = {
@@ -58,7 +59,7 @@ class Login extends Component {
       return <Loading />;
     }
     return (
-      <div data-testid="page-login">
+      <div data-testid="page-login" className="login">
         <form>
           <label htmlFor="username">
             Login:
